@@ -1,16 +1,19 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Skill Contest</title>
-<link rel="stylesheet" href="style.css">
+  <title>Skill Contest Quiz</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<h1>Skill Contest Quiz</h1>
-<p>Score decides winner</p>
+<h1>Skill Contest</h1>
+<p>Time Left: <span id="time">60</span> sec ⏱️</p>
 
 <div id="quiz"></div>
-<button onclick="submitQuiz()">Submit</button>
+
+<button onclick="submitQuiz()">Submit Quiz</button>
+<br><br>
+<a href="dashboard.html">Back to Dashboard</a>
 
 <script src="questions.js"></script>
 <script src="quiz.js"></script>
