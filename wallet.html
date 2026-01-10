@@ -1,21 +1,19 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <title>Wallet - Bet Luck & Earn</title>
-  <link rel="stylesheet" href="style.css">
-</head>
-<body>
+<h2>Wallet</h2>
+<p>Demo wallet (no real money)</p>
 
-<h1>Wallet</h1>
+<button onclick="addMoney(100)">Add ₹100</button>
+<button onclick="addMoney(500)">Add ₹500</button>
 
-<p>Balance: ₹0</p>
-<p>Minimum Deposit: ₹50</p>
-<p>Maximum Deposit: ₹1,00,000</p>
+<script type="module">
+import { auth, db } from "./firebase.js";
+import { doc, getDoc, updateDoc } from 
+"https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore.js";
 
-<p><b>UPI ID:</b> 7876746456@ptsbi</p>
-<p>Pay manually & contact support</p>
-
-<a href="dashboard.html">Back to Dashboard</a>
-
-</body>
-</html>
+window.addMoney = async (amt)=>{
+  const user = auth.currentUser;
+  const ref = doc(db,"users",user.uid);
+  const snap = await getDoc(ref);
+  await updateDoc(ref,{ wallet: snap.data().wallet + amt });
+  alert("Added ₹"+amt);
+}
+</script>
