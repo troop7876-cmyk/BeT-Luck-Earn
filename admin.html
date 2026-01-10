@@ -1,23 +1,60 @@
-<h2>Admin Panel</h2>
-<div id="data"></div>
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Admin Panel - Bet Luck & Earn</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
 
-<script type="module">
-import { auth, db } from "./firebase.js";
-import { collection, onSnapshot } from 
-"https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore.js";
+<div class="header">🔐 Admin Panel</div>
 
-auth.onAuthStateChanged(user=>{
-  if(user?.email !== "admin@betluck.com"){
-    alert("Admin only");
-    location.href="login.html";
-  }
+<div style="padding:20px;text-align:center;">
+
+  <h3>📊 System Overview</h3>
+
+  <div class="contest-card">
+    <p><b>Total Users:</b> <span id="users">Demo</span></p>
+    <p><b>Total Contests Played:</b> <span id="contests">Demo</span></p>
+  </div>
+
+  <br>
+
+  <h3>🏆 Leaderboard (Demo)</h3>
+  <div id="leaderboard"></div>
+
+  <br>
+
+  <button onclick="logout()">Logout</button>
+
+</div>
+
+<script>
+/* SIMPLE ADMIN CHECK (FRONTEND DEMO) */
+const ADMIN_KEY = "ADMIN123";   // change if you want
+
+if (prompt("Enter Admin Key") !== ADMIN_KEY) {
+  alert("Access Denied");
+  window.location.href = "login.html";
+}
+
+/* DEMO LEADERBOARD */
+const demoScores = [
+  {user:"User1", score:40},
+  {user:"User2", score:30},
+  {user:"User3", score:20}
+];
+
+let html = "";
+demoScores.forEach((u,i)=>{
+  html += `<p>🥇 Rank ${i+1} - ${u.user} : ${u.score} pts</p>`;
 });
+document.getElementById("leaderboard").innerHTML = html;
 
-onSnapshot(collection(db,"leaderboard"), snap=>{
-  let html="";
-  snap.forEach(d=>{
-    html += `<p>${d.data().user} : ${d.data().score}</p>`;
-  });
-  document.getElementById("data").innerHTML = html;
-});
+function logout(){
+  alert("Admin logged out");
+  window.location.href = "login.html";
+}
 </script>
+
+</body>
+</html>
