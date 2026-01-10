@@ -1,10 +1,10 @@
-const questions = [
-  { q: "5 + 7 = ?", a: "12" },
-  { q: "10 - 4 = ?", a: "6" },
+export const questions = [
+  { q: "10 + 15 = ?", a: "25" },
+  { q: "20 - 7 = ?", a: "13" },
   { q: "Capital of India?", a: "delhi" },
-  { q: "Sun is a ___?", a: "star" },
-  { q: "H2O is?", a: "water" },
-  { q: "15 + 25 = ?", a: "40" },
-  { q: "Opposite of cold?", a: "hot" },
-  { q: "Earth revolves around?", a: "sun" }
+  { q: "Sun is a ?", a: "star" },
+  { q: "Water formula?", a: "h2o" },
+  { q: "5 × 6 = ?", a: "30" },
+  { q: "Opposite of big?", a: "small" },
+  { q: "Earth rotates around?", a: "sun" }
 ];
