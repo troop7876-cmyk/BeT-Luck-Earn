@@ -1,29 +1,45 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Dashboard - Bet Luck & Earn</title>
+  <title>Dashboard</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<div class="header">Welcome 👋</div>
+<div class="header">🎰 Bet Luck & Earn</div>
 
-<div style="padding:25px;text-align:center;">
-  <h2>🎰 Bet Luck & Earn</h2>
-  <p>Skill Based Quiz Platform</p>
+<div style="padding:20px;text-align:center;">
+  <p>🆔 ID: <b id="uid"></b></p>
+  <p>💰 Wallet: ₹<b id="wallet"></b></p>
 
+  <button onclick="playClick();location.href='contest.html'">🎯 Play</button>
   <br><br>
+  <button onclick="playClick();location.href='withdraw.html'">🏦 Withdraw</button>
+  <br><br>
+  <button onclick="toggleMusic()">🎵 Music On / Off</button>
 
-  <button onclick="location.href='contest.html'">🎯 Play Contests</button>
-  <br><br>
-  <button onclick="location.href='wallet.html'">💳 Wallet</button>
-  <br><br>
-  <button onclick="location.href='withdraw.html'">🏦 Withdraw</button>
+  <hr style="margin:20px 0">
+
+  <h3>🏆 Top Winners</h3>
+  <div id="top"></div>
 </div>
 
-<div class="footer">
-  Fair Play • No Gambling • Trusted Platform
-</div>
+<script src="sound.js"></script>
+<script>
+const user = JSON.parse(localStorage.getItem("user"));
+if(!user) location.href="register.html";
+
+uid.innerText = user.id;
+wallet.innerText = user.wallet;
+
+const scores = JSON.parse(localStorage.getItem("scores")) || [];
+scores.sort((a,b)=>b.score-a.score);
+let html="";
+scores.slice(0,3).forEach((s,i)=>{
+  html += `<p>🥇 Rank ${i+1}: ${s.name} (${s.score})</p>`;
+});
+top.innerHTML = html || "<p>No winners yet</p>";
+</script>
 
 </body>
 </html>
