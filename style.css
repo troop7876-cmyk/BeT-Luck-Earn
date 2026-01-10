@@ -1,104 +1,105 @@
-*{
-  box-sizing:border-box;
-  margin:0;
-  padding:0;
-  font-family: 'Segoe UI', Arial, sans-serif;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Segoe UI", Arial, sans-serif;
 }
 
-body{
+body {
   background: radial-gradient(circle at top, #1db954, #0f3d2e);
-  color:#fff;
-  min-height:100vh;
+  color: #ffffff;
+  min-height: 100vh;
 }
 
 /* HEADER */
-.header{
-  padding:15px;
-  text-align:center;
-  background:rgba(0,0,0,0.3);
-  font-size:20px;
-  font-weight:bold;
+.header {
+  background: rgba(0, 0, 0, 0.4);
+  padding: 16px;
+  text-align: center;
+  font-size: 22px;
+  font-weight: bold;
 }
 
 /* WALLET BAR */
-.wallet-bar{
-  margin:15px;
-  padding:12px;
-  background:#00000055;
-  border-radius:12px;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
+.wallet-bar {
+  margin: 15px;
+  padding: 14px;
+  background: rgba(0, 0, 0, 0.4);
+  border-radius: 14px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
-.wallet-bar span{
-  font-size:18px;
+.wallet-bar span {
+  font-size: 18px;
 }
 
 /* BUTTONS */
-button{
-  background:linear-gradient(135deg,#00ff9d,#00c56e);
-  color:#003d2b;
-  border:none;
-  padding:12px 18px;
-  border-radius:12px;
-  font-size:16px;
-  font-weight:600;
-  cursor:pointer;
-  transition:0.2s;
+button {
+  background: linear-gradient(135deg, #00ff9d, #00c56e);
+  color: #003d2b;
+  border: none;
+  padding: 12px 18px;
+  border-radius: 14px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.2s;
 }
 
-button:hover{
-  transform:scale(1.05);
-  box-shadow:0 0 15px #00ff9d;
+button:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 15px #00ff9d;
 }
 
 /* CONTEST GRID */
-.contests{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(140px,1fr));
-  gap:15px;
-  padding:15px;
+.contests {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 15px;
+  padding: 15px;
 }
 
-.contest-card{
-  background:#00000066;
-  padding:15px;
-  border-radius:16px;
-  text-align:center;
+.contest-card {
+  background: rgba(0, 0, 0, 0.45);
+  padding: 16px;
+  border-radius: 18px;
+  text-align: center;
 }
 
-.contest-card h3{
-  margin-bottom:8px;
+.contest-card h3 {
+  margin-bottom: 6px;
 }
 
-.contest-card p{
-  font-size:14px;
-  opacity:0.9;
+.contest-card p {
+  font-size: 14px;
+  opacity: 0.9;
+  margin-bottom: 10px;
 }
 
 /* QUIZ BOX */
-#quizBox{
-  background:#00000088;
-  margin:20px;
-  padding:20px;
-  border-radius:16px;
+#quizBox {
+  background: rgba(0, 0, 0, 0.6);
+  margin: 20px;
+  padding: 20px;
+  border-radius: 18px;
 }
 
-input{
-  width:100%;
-  padding:12px;
-  margin:10px 0;
-  border-radius:10px;
-  border:none;
-  font-size:16px;
+input {
+  width: 100%;
+  padding: 12px;
+  margin: 10px 0;
+  border-radius: 12px;
+  border: none;
+  font-size: 16px;
 }
 
 /* FOOTER */
-.footer{
-  margin-top:30px;
-  padding:10px;
-  text-align:center;
-  font-size:13px;
-  opacity:0.8;
+.footer {
+  margin-top: 30px;
+  padding: 12px;
+  text-align: center;
+  font-size: 13px;
+  opacity: 0.85;
 }
