@@ -1,20 +1,24 @@
-import { questions } from "./question.js";
-
 let wallet = 100;
 let correctAnswer = "";
 
-const walletEl = document.getElementById("wallet");
+const questions = [
+  {q:"5 + 5 = ?", a:"10"},
+  {q:"10 - 3 = ?", a:"7"},
+  {q:"Capital of India?", a:"delhi"},
+  {q:"Sun is a ?", a:"star"}
+];
 
 window.startContest = function(amount){
   if(wallet < amount){
-    alert("Not enough wallet balance");
+    playLose();
+    alert("Insufficient balance");
     return;
   }
 
   wallet -= amount;
-  walletEl.innerText = wallet;
+  document.getElementById("wallet").innerText = wallet;
 
-  const q = questions[Math.floor(Math.random() * questions.length)];
+  const q = questions[Math.floor(Math.random()*questions.length)];
   correctAnswer = q.a.toLowerCase();
 
   document.getElementById("question").innerText = q.q;
@@ -23,22 +27,17 @@ window.startContest = function(amount){
 
 window.submitQuiz = function(){
   const ans = document.getElementById("answer").value.toLowerCase().trim();
-  const box = document.getElementById("quizBox");
 
   if(ans === correctAnswer){
-    box.style.boxShadow = "0 0 25px #00ff9d";
+    playWin();
     alert("🎉 Correct! You Won");
     wallet += 20;
-  } else {
-    box.style.boxShadow = "0 0 25px red";
+  }else{
+    playLose();
     alert("❌ Wrong Answer");
   }
 
-  walletEl.innerText = wallet;
+  document.getElementById("wallet").innerText = wallet;
   document.getElementById("answer").value = "";
-
-  setTimeout(()=>{
-    box.style.display = "none";
-    box.style.boxShadow = "none";
-  },600);
+  document.getElementById("quizBox").style.display = "none";
 };
