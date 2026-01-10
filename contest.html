@@ -1,16 +1,15 @@
+<h2>Skill Contests</h2>
+
 <button onclick="startContest(5)">₹5 Contest</button>
 <button onclick="startContest(10)">₹10 Contest</button>
 <button onclick="startContest(50)">₹50 Contest</button>
 <button onclick="startContest(100)">₹100 Contest</button>
+<button onclick="startContest(1000)">₹1000 Contest</button>
 
 <div id="quizBox" style="display:none;">
   <h3 id="question"></h3>
-  <input id="answer" placeholder="Your answer">
+  <input id="answer" placeholder="Answer">
   <button onclick="submitQuiz()">Submit</button>
 </div>
 
-<h3>Wallet: ₹<span id="wallet">0</span></h3>
-
-<script src="firebase.js"></script>
-<script src="question.js"></script>
-<script src="quiz.js"></script>
+<script type="module" src="quiz.js"></script>
