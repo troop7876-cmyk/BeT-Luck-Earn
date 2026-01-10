@@ -9,53 +9,48 @@
 <div class="header">🎰 Bet Luck & Earn</div>
 
 <div class="wallet-bar">
-  <span>💰 Wallet: ₹<span id="wallet">0</span></span>
-  <button onclick="location.href='wallet.html'">➕ Add</button>
+  <span>💰 Wallet: ₹<span id="wallet">100</span></span>
+  <button onclick="playClick();location.href='wallet.html'">➕ Add</button>
 </div>
 
 <div class="contests">
   <div class="contest-card">
     <h3>₹5 Contest</h3>
     <p>Win ₹10</p>
-    <button onclick="startContest(5)">Play</button>
+    <button onclick="playClick();startContest(5)">Play</button>
   </div>
 
   <div class="contest-card">
     <h3>₹10 Contest</h3>
     <p>Win ₹20</p>
-    <button onclick="startContest(10)">Play</button>
+    <button onclick="playClick();startContest(10)">Play</button>
   </div>
 
   <div class="contest-card">
     <h3>₹50 Contest</h3>
     <p>Win ₹100</p>
-    <button onclick="startContest(50)">Play</button>
+    <button onclick="playClick();startContest(50)">Play</button>
   </div>
 
   <div class="contest-card">
     <h3>₹100 Contest</h3>
     <p>Win ₹200</p>
-    <button onclick="startContest(100)">Play</button>
-  </div>
-
-  <div class="contest-card">
-    <h3>₹1000 Contest</h3>
-    <p>Win ₹2000</p>
-    <button onclick="startContest(1000)">Play</button>
+    <button onclick="playClick();startContest(100)">Play</button>
   </div>
 </div>
 
 <div id="quizBox" style="display:none;">
   <h3 id="question"></h3>
   <input id="answer" placeholder="Enter your answer">
-  <button onclick="submitQuiz()">Submit</button>
+  <button onclick="playClick();submitQuiz()">Submit</button>
 </div>
 
 <div class="footer">
   ✔ Skill Based &nbsp; ✔ Trusted &nbsp; ✔ Fair Play
 </div>
 
-<script type="module" src="quiz.js"></script>
+<script src="sound.js"></script>
+<script src="quiz.js"></script>
 
 </body>
 </html>
