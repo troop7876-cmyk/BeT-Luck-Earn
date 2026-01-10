@@ -1,24 +1,25 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Dashboard - Bet Luck & Earn</title>
+  <title>Dashboard</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
 <h1>Welcome to Bet Luck & Earn</h1>
-<p>Skill Based | Trusted | Easy to Use</p>
+<p>Wallet Balance: ₹<span id="balance">0</span> 💰</p>
 
 <div class="cards">
-  <div class="card">₹5 Skill Contest</div>
-  <div class="card">₹10 Skill Contest</div>
-  <div class="card">₹50 Skill Contest</div>
-  <div class="card">₹100 Skill Contest</div>
-  <div class="card">₹1000 Skill Contest</div>
+  <div class="card" onclick="joinContest(5)">₹5 Skill Contest</div>
+  <div class="card" onclick="joinContest(10)">₹10 Skill Contest</div>
+  <div class="card" onclick="joinContest(50)">₹50 Skill Contest</div>
+  <div class="card" onclick="joinContest(100)">₹100 Skill Contest</div>
+  <div class="card" onclick="joinContest(1000)">₹1000 Skill Contest</div>
 </div>
 
 <a href="wallet.html">Deposit</a>
 <a href="withdraw.html">Withdraw</a>
 
+<script src="script.js"></script>
 </body>
 </html>
