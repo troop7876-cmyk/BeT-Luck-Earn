@@ -1,56 +1,62 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Contests - Bet Luck & Earn</title>
+  <title>Contests</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<div class="header">🎰 Bet Luck & Earn</div>
+<div class="header">🎯 Contests</div>
 
 <div class="wallet-bar">
-  <span>💰 Wallet: ₹<span id="wallet">100</span></span>
-  <button onclick="playClick();location.href='wallet.html'">➕ Add</button>
+  <span>💰 Wallet: ₹<span id="wallet"></span></span>
 </div>
 
 <div class="contests">
-  <div class="contest-card">
-    <h3>₹5 Contest</h3>
-    <p>Win ₹10</p>
-    <button onclick="playClick();startContest(5)">Play</button>
-  </div>
-
-  <div class="contest-card">
-    <h3>₹10 Contest</h3>
-    <p>Win ₹20</p>
-    <button onclick="playClick();startContest(10)">Play</button>
-  </div>
-
-  <div class="contest-card">
-    <h3>₹50 Contest</h3>
-    <p>Win ₹100</p>
-    <button onclick="playClick();startContest(50)">Play</button>
-  </div>
-
-  <div class="contest-card">
-    <h3>₹100 Contest</h3>
-    <p>Win ₹200</p>
-    <button onclick="playClick();startContest(100)">Play</button>
-  </div>
+  <div class="contest-card"><h3>₹5</h3><button onclick="playClick();start(5)">Play</button></div>
+  <div class="contest-card"><h3>₹10</h3><button onclick="playClick();start(10)">Play</button></div>
+  <div class="contest-card"><h3>₹50</h3><button onclick="playClick();start(50)">Play</button></div>
 </div>
 
 <div id="quizBox" style="display:none;">
-  <h3 id="question"></h3>
-  <input id="answer" placeholder="Enter your answer">
-  <button onclick="playClick();submitQuiz()">Submit</button>
-</div>
-
-<div class="footer">
-  ✔ Skill Based &nbsp; ✔ Trusted &nbsp; ✔ Fair Play
+  <h3 id="q"></h3>
+  <input id="ans" placeholder="Answer">
+  <button onclick="submit()">Submit</button>
 </div>
 
 <script src="sound.js"></script>
-<script src="quiz.js"></script>
+<script>
+const user = JSON.parse(localStorage.getItem("user"));
+wallet.innerText = user.wallet;
+
+const qs = [
+  {q:"5+5=?",a:"10"},
+  {q:"10-3=?",a:"7"},
+  {q:"Capital of India?",a:"delhi"},
+  {q:"Sun is a?",a:"star"}
+];
+
+let right="", fee=0;
+
+function start(f){
+  if(user.wallet < f){ playLose(); alert("Low balance"); return; }
+  fee=f; user.wallet-=f; wallet.innerText=user.wallet;
+  const x = qs[Math.floor(Math.random()*qs.length)];
+  right=x.a; q.innerText=x.q; quizBox.style.display="block";
+}
+
+function submit(){
+  if(ans.value.toLowerCase().trim()==right){
+    playWin(); alert("Won!");
+    user.wallet+=20;
+    const scores = JSON.parse(localStorage.getItem("scores"));
+    scores.push({name:user.id, score:20});
+    localStorage.setItem("scores", JSON.stringify(scores));
+  } else { playLose(); alert("Wrong"); }
+  localStorage.setItem("user", JSON.stringify(user));
+  quizBox.style.display="none"; ans.value="";
+}
+</script>
 
 </body>
 </html>
