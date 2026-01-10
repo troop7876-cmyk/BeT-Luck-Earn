@@ -1,21 +1,32 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Withdraw - Bet Luck & Earn</title>
+  <title>Withdraw</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<h1>Withdraw</h1>
+<div class="header">🏦 Withdraw</div>
 
-<input type="text" placeholder="Amount"><br><br>
-<input type="text" placeholder="UPI / Bank Details"><br><br>
+<div style="padding:20px;text-align:center;">
+  <p>Wallet: ₹<span id="w"></span></p>
+  <input id="amt" placeholder="Amount">
+  <button onclick="req()">Request</button>
+</div>
 
-<a href="#">Submit Request</a>
+<script>
+const user = JSON.parse(localStorage.getItem("user"));
+w.innerText=user.wallet;
 
-<p>*Only winning amount allowed</p>
-
-<a href="dashboard.html">Back</a>
+function req(){
+  const a=parseInt(amt.value);
+  if(a>user.wallet){ alert("Low balance"); return; }
+  const ws = JSON.parse(localStorage.getItem("withdraws"));
+  ws.push({id:user.id, amount:a, status:"PENDING"});
+  localStorage.setItem("withdraws", JSON.stringify(ws));
+  alert("Request sent for approval");
+}
+</script>
 
 </body>
 </html>
