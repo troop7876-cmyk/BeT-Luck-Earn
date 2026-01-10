@@ -1,51 +1,50 @@
-let selected = [];
-let score = 0;
-let time = 60;
-let timer;
+let currentAnswer = "";
+let wallet = 0;
 
-function loadQuiz(){
-  selected = questions.sort(() => 0.5 - Math.random()).slice(0, 10);
-  let html = "";
+function startContest(amount){
+  if(wallet < amount){
+    alert("Insufficient balance");
+    return;
+  }
 
-  selected.forEach((q,i)=>{
-    html += `<p><b>${i+1}. ${q.q}</b></p>`;
-    q.a.forEach((op,j)=>{
-      html += `
-        <label>
-          <input type="radio" name="q${i}" value="${j}"> ${op}
-        </label><br>`;
-    });
-  });
+  wallet -= amount;
+  updateWallet();
 
-  document.getElementById("quiz").innerHTML = html;
-  startTimer();
-}
+  const q = questions[Math.floor(Math.random()*questions.length)];
+  currentAnswer = q.a.toLowerCase();
 
-function startTimer(){
-  timer = setInterval(()=>{
-    time--;
-    document.getElementById("time").innerText = time;
-    if(time <= 0){
-      clearInterval(timer);
-      submitQuiz();
-    }
-  },1000);
+  document.getElementById("question").innerText = q.q;
+  document.getElementById("quizBox").style.display = "block";
 }
 
 function submitQuiz(){
-  clearInterval(timer);
-  score = 0;
+  const userAns = document.getElementById("answer").value.toLowerCase().trim();
 
-  selected.forEach((q,i)=>{
-    let ans = document.querySelector(`input[name=q${i}]:checked`);
-    if(ans && parseInt(ans.value) === q.c){
-      score++;
-    }
-  });
+  if(userAns === currentAnswer){
+    alert("Correct 🎉 +20 points");
+    wallet += 20;
+    saveScore(20);
+  }else{
+    alert("Wrong ❌");
+    saveScore(0);
+  }
 
-  saveScore(score);
-  alert("Quiz Finished!\nScore: " + score + "/10");
-  window.location.href = "leaderboard.html";
+  updateWallet();
+  document.getElementById("quizBox").style.display = "none";
+  document.getElementById("answer").value = "";
 }
 
-loadQuiz();
+function updateWallet(){
+  document.getElementById("wallet").innerText = wallet;
+}
+
+function saveScore(score){
+  const user = auth.currentUser;
+  if(!user) return;
+
+  db.collection("leaderboard").add({
+    email: user.email,
+    score: score,
+    time: firebase.firestore.FieldValue.serverTimestamp()
+  });
+}
