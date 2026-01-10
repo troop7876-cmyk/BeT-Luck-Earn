@@ -1,21 +1,23 @@
 <h2>Admin Panel</h2>
 <div id="data"></div>
 
-<script src="firebase.js"></script>
-<script>
+<script type="module">
+import { auth, db } from "./firebase.js";
+import { collection, onSnapshot } from 
+"https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore.js";
+
 auth.onAuthStateChanged(user=>{
-  if(user && user.email === "admin@betluck.com"){
-    db.collection("leaderboard").onSnapshot(snap=>{
-      let html = "";
-      snap.forEach(doc=>{
-        const d = doc.data();
-        html += `<p>${d.email} : ${d.score}</p>`;
-      });
-      document.getElementById("data").innerHTML = html;
-    });
-  }else{
+  if(user?.email !== "admin@betluck.com"){
     alert("Admin only");
-    window.location.href="login.html";
+    location.href="login.html";
   }
+});
+
+onSnapshot(collection(db,"leaderboard"), snap=>{
+  let html="";
+  snap.forEach(d=>{
+    html += `<p>${d.data().user} : ${d.data().score}</p>`;
+  });
+  document.getElementById("data").innerHTML = html;
 });
 </script>
