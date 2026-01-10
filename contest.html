@@ -1,21 +1,16 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <title>Skill Contest Quiz</title>
-  <link rel="stylesheet" href="style.css">
-</head>
-<body>
+<button onclick="startContest(5)">₹5 Contest</button>
+<button onclick="startContest(10)">₹10 Contest</button>
+<button onclick="startContest(50)">₹50 Contest</button>
+<button onclick="startContest(100)">₹100 Contest</button>
 
-<h1>Skill Contest</h1>
-<p>Time Left: <span id="time">60</span> sec ⏱️</p>
+<div id="quizBox" style="display:none;">
+  <h3 id="question"></h3>
+  <input id="answer" placeholder="Your answer">
+  <button onclick="submitQuiz()">Submit</button>
+</div>
 
-<div id="quiz"></div>
+<h3>Wallet: ₹<span id="wallet">0</span></h3>
 
-<button onclick="submitQuiz()">Submit Quiz</button>
-<br><br>
-<a href="dashboard.html">Back to Dashboard</a>
-
-<script src="questions.js"></script>
+<script src="firebase.js"></script>
+<script src="question.js"></script>
 <script src="quiz.js"></script>
-</body>
-</html>
