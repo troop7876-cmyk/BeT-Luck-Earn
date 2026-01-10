@@ -1,50 +1,54 @@
-let currentAnswer = "";
-let wallet = 0;
+import { auth, db } from "./firebase.js";
+import { questions } from "./question.js";
+import { doc, getDoc, updateDoc, addDoc, collection } 
+from "https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore.js";
 
-function startContest(amount){
-  if(wallet < amount){
-    alert("Insufficient balance");
+let currentAnswer = "";
+let contestAmount = 0;
+
+window.startContest = async (amount) => {
+  contestAmount = amount;
+
+  const user = auth.currentUser;
+  if (!user) {
+    alert("Please login");
     return;
   }
 
-  wallet -= amount;
-  updateWallet();
+  const ref = doc(db, "users", user.uid);
+  const snap = await getDoc(ref);
 
-  const q = questions[Math.floor(Math.random()*questions.length)];
+  if (!snap.exists() || snap.data().wallet < amount) {
+    alert("Insufficient wallet balance");
+    return;
+  }
+
+  const q = questions[Math.floor(Math.random() * questions.length)];
   currentAnswer = q.a.toLowerCase();
 
   document.getElementById("question").innerText = q.q;
   document.getElementById("quizBox").style.display = "block";
-}
+};
 
-function submitQuiz(){
-  const userAns = document.getElementById("answer").value.toLowerCase().trim();
-
-  if(userAns === currentAnswer){
-    alert("Correct 🎉 +20 points");
-    wallet += 20;
-    saveScore(20);
-  }else{
-    alert("Wrong ❌");
-    saveScore(0);
-  }
-
-  updateWallet();
-  document.getElementById("quizBox").style.display = "none";
-  document.getElementById("answer").value = "";
-}
-
-function updateWallet(){
-  document.getElementById("wallet").innerText = wallet;
-}
-
-function saveScore(score){
+window.submitQuiz = async () => {
+  const ans = document.getElementById("answer").value.toLowerCase().trim();
   const user = auth.currentUser;
-  if(!user) return;
 
-  db.collection("leaderboard").add({
-    email: user.email,
-    score: score,
-    time: firebase.firestore.FieldValue.serverTimestamp()
+  let reward = ans === currentAnswer ? contestAmount * 2 : 0;
+
+  const ref = doc(db, "users", user.uid);
+  const snap = await getDoc(ref);
+
+  await updateDoc(ref, {
+    wallet: snap.data().wallet - contestAmount + reward
   });
-}
+
+  await addDoc(collection(db, "leaderboard"), {
+    user: user.email,
+    score: reward,
+    time: new Date()
+  });
+
+  alert(ans === currentAnswer ? "Correct! You won ₹" + reward : "Wrong answer");
+  document.getElementById("quizBox").style.display = "none";
+};
