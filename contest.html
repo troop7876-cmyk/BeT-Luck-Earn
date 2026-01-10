@@ -1,15 +1,52 @@
-<h2>Skill Contests</h2>
+<link rel="stylesheet" href="style.css">
 
-<button onclick="startContest(5)">₹5 Contest</button>
-<button onclick="startContest(10)">₹10 Contest</button>
-<button onclick="startContest(50)">₹50 Contest</button>
-<button onclick="startContest(100)">₹100 Contest</button>
-<button onclick="startContest(1000)">₹1000 Contest</button>
+<div class="header">🎰 Bet Luck & Earn</div>
+
+<div class="wallet-bar">
+  <span>💰 Wallet: ₹<span id="wallet">0</span></span>
+  <button onclick="location.href='wallet.html'">➕ Add</button>
+</div>
+
+<div class="contests">
+  <div class="contest-card">
+    <h3>₹5 Contest</h3>
+    <p>Win ₹10</p>
+    <button onclick="startContest(5)">Play</button>
+  </div>
+
+  <div class="contest-card">
+    <h3>₹10 Contest</h3>
+    <p>Win ₹20</p>
+    <button onclick="startContest(10)">Play</button>
+  </div>
+
+  <div class="contest-card">
+    <h3>₹50 Contest</h3>
+    <p>Win ₹100</p>
+    <button onclick="startContest(50)">Play</button>
+  </div>
+
+  <div class="contest-card">
+    <h3>₹100 Contest</h3>
+    <p>Win ₹200</p>
+    <button onclick="startContest(100)">Play</button>
+  </div>
+
+  <div class="contest-card">
+    <h3>₹1000 Contest</h3>
+    <p>Win ₹2000</p>
+    <button onclick="startContest(1000)">Play</button>
+  </div>
+</div>
 
 <div id="quizBox" style="display:none;">
   <h3 id="question"></h3>
-  <input id="answer" placeholder="Answer">
+  <input id="answer" placeholder="Type your answer">
   <button onclick="submitQuiz()">Submit</button>
+</div>
+
+<div class="footer">
+  ✔ Skill Based | ✔ Trusted | ✔ Easy to Use
 </div>
 
 <script type="module" src="quiz.js"></script>
