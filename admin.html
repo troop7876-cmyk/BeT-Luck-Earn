@@ -1,21 +1,12 @@
-<body>
-<h2>Admin Panel</h2>
-<div id="l"></div>
-
+<!doctype html><html><body>
+<h2>Admin</h2><div id="l"></div>
 <script>
-let r=JSON.parse(localStorage.getItem("req")||"[]");
-l.innerHTML=r.map((x,i)=>`
-${x.user} ₹${x.amt} ${x.status}
-<button onclick="ok(${i})">Approve</button><hr>
-`).join("");
-
+const r=JSON.parse(localStorage.getItem("req")||"[]");
+l.innerHTML=r.map((x,i)=>`${x.u} ₹${x.amt} ${x.s}
+<button onclick="ok(${i})">Approve</button><hr>`).join("");
 function ok(i){
- let x=r[i];
- let b=Number(localStorage.getItem("wallet_"+x.user));
- localStorage.setItem("wallet_"+x.user,b-Number(x.amt));
- r[i].status="Approved";
- localStorage.setItem("req",JSON.stringify(r));
- location.reload();
+  const x=r[i]; const b=+localStorage.getItem("wallet_"+x.u);
+  localStorage.setItem("wallet_"+x.u,b-x.amt); x.s="Approved";
+  localStorage.setItem("req",JSON.stringify(r)); location.reload();
 }
-</script>
-</body>
+</script></body></html>
