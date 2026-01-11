@@ -1,30 +1,41 @@
 /* ===== RESET ===== */
-body{
+html,body{
   margin:0;
+  padding:0;
+  width:100%;
+  height:100%;
   font-family:Arial, sans-serif;
   color:#fff;
 }
 
-/* ===== FULL CASINO ANIMATED BACKGROUND ===== */
+/* ===== FULL SCREEN CENTER FIX ===== */
 .full-bg{
-  min-height:100vh;
+  width:100vw;
+  height:100vh;
   display:flex;
   align-items:center;
   justify-content:center;
-  background:radial-gradient(circle at center,#00ff99,#0066ff,#001a33);
-  background-size:200% 200%;
-  animation:casinoMove 10s ease-in-out infinite;
+
+  background:radial-gradient(circle at center,
+    #00ff99 0%,
+    #00ccff 40%,
+    #003366 100%);
+
+  background-size:300% 300%;
+  animation:bgMove 10s ease-in-out infinite;
+
   position:relative;
   overflow:hidden;
 }
 
-@keyframes casinoMove{
+/* ===== BACKGROUND ANIMATION ===== */
+@keyframes bgMove{
   0%{background-position:0% 50%}
   50%{background-position:100% 50%}
   100%{background-position:0% 50%}
 }
 
-/* floating casino lights */
+/* ===== GLOW ORBS (CASINO FEEL) ===== */
 .full-bg::before,
 .full-bg::after{
   content:"";
@@ -32,25 +43,47 @@ body{
   width:320px;
   height:320px;
   border-radius:50%;
-  filter:blur(130px);
-  opacity:0.45;
-  animation:floatGlow 7s infinite alternate;
+  filter:blur(120px);
+  opacity:0.5;
+  animation:float 6s infinite alternate;
 }
+
 .full-bg::before{
   background:#00ff99;
-  top:15%;
-  left:10%;
+  top:10%;
+  left:15%;
 }
+
 .full-bg::after{
   background:#00ccff;
-  right:10%;
   bottom:15%;
+  right:15%;
   animation-delay:3s;
 }
 
-@keyframes floatGlow{
+@keyframes float{
   from{transform:translateY(0)}
-  to{transform:translateY(-70px)}
+  to{transform:translateY(-60px)}
+}
+
+/* ===== CENTER PANEL ===== */
+.center-panel{
+  background:rgba(0,0,0,0.8);
+  width:90%;
+  max-width:380px;
+  padding:35px 25px;
+  border-radius:22px;
+  text-align:center;
+  z-index:2;
+
+  box-shadow:0 0 40px #00ff99;
+  animation:pulse 2.5s infinite;
+}
+
+@keyframes pulse{
+  0%{box-shadow:0 0 20px #00ff99}
+  50%{box-shadow:0 0 45px #00ccff}
+  100%{box-shadow:0 0 20px #00ff99}
 }
 
 /* ===== BRAND ===== */
@@ -60,45 +93,15 @@ body{
   background:linear-gradient(90deg,#00ff99,#ffd700,#00ccff);
   -webkit-background-clip:text;
   -webkit-text-fill-color:transparent;
-  text-shadow:0 0 22px rgba(255,215,0,0.8);
-  animation:brandGlow 2.5s infinite alternate;
+  text-shadow:0 0 20px gold;
+  margin-bottom:10px;
 }
 
-@keyframes brandGlow{
-  from{filter:drop-shadow(0 0 10px #00ff99)}
-  to{filter:drop-shadow(0 0 22px gold)}
-}
-
-/* ===== CENTER BIG PANEL ===== */
-.center-panel{
-  background:rgba(0,0,0,0.78);
-  width:90%;
-  max-width:380px;
-  padding:34px 26px;
-  border-radius:22px;
-  text-align:center;
-  box-shadow:0 0 45px rgba(0,255,153,0.85);
-  animation:panelPulse 2.8s infinite;
-  z-index:5;
-}
-
-@keyframes panelPulse{
-  0%{box-shadow:0 0 22px #00ff99}
-  50%{box-shadow:0 0 45px #00ccff}
-  100%{box-shadow:0 0 22px #00ff99}
-}
-
-.center-panel p{
-  opacity:.9;
-  margin-bottom:22px;
-  font-size:14px;
-}
-
-/* inputs & buttons */
+/* ===== INPUT & BUTTON ===== */
 .center-panel input,
 .center-panel button{
   width:100%;
-  padding:13px;
+  padding:14px;
   margin-top:14px;
   border:none;
   border-radius:12px;
@@ -107,11 +110,6 @@ body{
 
 .center-panel button{
   background:linear-gradient(90deg,#00ff99,#00ccff);
-  color:#000;
   font-weight:bold;
-  cursor:pointer;
-}
-
-.center-panel button:hover{
-  filter:brightness(1.15);
+  color:#000;
 }
