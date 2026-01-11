@@ -1,19 +1,10 @@
-<!DOCTYPE html>
-<html>
-<head>
-<title>Dashboard</title>
-<link rel="stylesheet" href="style.css">
-</head>
-<body class="dash-bg" onload="bgMusic()">
-
-<div class="dash">
-  <h1 class="brand-name">🎰 Bet Luck Earn</h1>
-  <p>Welcome, <span id="user"></span></p>
-
-  <div class="wallet">
-    Wallet Balance
-    <div class="money">₹<span id="bal"></span></div>
-  </div>
+<!doctype html><html><head>
+<title>Dashboard</title><link rel="stylesheet" href="style.css"></head>
+<body class="full-bg" onload="bgMusic()">
+<div class="panel">
+  <div class="brand">🎰 Bet Luck Earn</div>
+  <p>Welcome, <b id="u"></b></p>
+  <div class="wallet">Wallet <div class="money">₹<span id="b"></span></div></div>
 
   <div class="grid">
     <div onclick="deposit()">💰 Deposit</div>
@@ -27,26 +18,19 @@
 
 <script src="sound.js"></script>
 <script>
-let u=localStorage.getItem("loggedUser");
-user.innerText=u;
-bal.innerText=localStorage.getItem("wallet_"+u)||0;
+const u=localStorage.getItem("loggedUser");
+if(!u) location="login.html";
+u&&(document.getElementById("u").innerText=u,
+document.getElementById("b").innerText=localStorage.getItem("wallet_"+u)||"0");
 
 function deposit(){
-  play("deposit");
-  localStorage.setItem("hasDeposited","yes");
-  box.innerHTML=`
-  <h3>Deposit</h3>
-  <p><b>UPI:</b> 7876746456@ptsbi</p>
-  <p><b>GPay:</b> 7876746456</p>
-  <img src="qr.png" width="200">
-  `;
+  play("deposit"); localStorage.setItem("hasDeposited","yes");
+  box.innerHTML=`<h3>Deposit</h3>
+  <p><b>UPI:</b> 7876746456@ptsbi</p><p><b>GPay:</b> 7876746456</p>
+  <div class="qr-box"><img src="qr.png"></div>`;
 }
 function withdraw(){ play("withdraw"); location="withdraw.html"; }
 function contest(){ play("click"); location="contest.html"; }
-function winners(){
- play("win");
- box.innerHTML="<h3>🏆 Winners</h3><ol><li>Aman ₹350</li><li>Ravi ₹210</li><li>Neha ₹140</li></ol>";
-}
+function winners(){ play("win"); box.innerHTML="<ol><li>Aman ₹350</li><li>Ravi ₹210</li><li>Neha ₹140</li></ol>"; }
 </script>
-</body>
-</html>
+</body></html>
