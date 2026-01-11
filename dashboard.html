@@ -1,22 +1,52 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Dashboard</title>
-  <link rel="stylesheet" href="css/style.css">
+<title>Dashboard</title>
+<link rel="stylesheet" href="style.css">
 </head>
-<body class="casino-bg" onload="bgMusic()">
+<body class="dash-bg" onload="bgMusic()">
 
-<h2>Welcome <span id="uname"></span></h2>
+<div class="dash">
+  <h1 class="brand-name">🎰 Bet Luck Earn</h1>
+  <p>Welcome, <span id="user"></span></p>
 
-<div class="menu">
-  <button onclick="deposit()">Deposit</button>
-  <button onclick="withdraw()">Withdraw</button>
-  <button onclick="location.href='contest.html'">Quiz Contest</button>
+  <div class="wallet">
+    Wallet Balance
+    <div class="money">₹<span id="bal"></span></div>
+  </div>
+
+  <div class="grid">
+    <div onclick="deposit()">💰 Deposit</div>
+    <div onclick="withdraw()">💸 Withdraw</div>
+    <div onclick="contest()">🏆 Contest</div>
+    <div onclick="winners()">🥇 Winners</div>
+  </div>
+
+  <div id="box"></div>
 </div>
 
-<div id="box"></div>
+<script src="sound.js"></script>
+<script>
+let u=localStorage.getItem("loggedUser");
+user.innerText=u;
+bal.innerText=localStorage.getItem("wallet_"+u)||0;
 
-<script src="js/dashboard.js"></script>
-<script src="js/sound.js"></script>
+function deposit(){
+  play("deposit");
+  localStorage.setItem("hasDeposited","yes");
+  box.innerHTML=`
+  <h3>Deposit</h3>
+  <p><b>UPI:</b> 7876746456@ptsbi</p>
+  <p><b>GPay:</b> 7876746456</p>
+  <img src="qr.png" width="200">
+  `;
+}
+function withdraw(){ play("withdraw"); location="withdraw.html"; }
+function contest(){ play("click"); location="contest.html"; }
+function winners(){
+ play("win");
+ box.innerHTML="<h3>🏆 Winners</h3><ol><li>Aman ₹350</li><li>Ravi ₹210</li><li>Neha ₹140</li></ol>";
+}
+</script>
 </body>
 </html>
