@@ -1,177 +1,20 @@
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: "Segoe UI", Arial, sans-serif;
-}
+body{margin:0;font-family:Arial;color:#fff}
+.login-bg{background:#000}
+.casino-bg{background:radial-gradient(circle,#111,#000)}
+.contest-bg{background:#0a0a0a}
 
-body {
-  background: radial-gradient(circle at top, #1db954, #0f3d2e);
-  color: #ffffff;
-  min-height: 100vh;
-  animation: pageFade 0.8s ease;
+.login-box{
+  width:300px;margin:120px auto;
+  background:#111;padding:20px;
+  border-radius:12px;
+  animation:glow 2s infinite alternate;
 }
-
-/* PAGE FADE */
-@keyframes pageFade {
-  from { opacity: 0; transform: scale(0.98); }
-  to { opacity: 1; transform: scale(1); }
+@keyframes glow{
+  from{box-shadow:0 0 10px gold}
+  to{box-shadow:0 0 25px red}
 }
-
-/* HEADER */
-.header {
-  background: rgba(0, 0, 0, 0.4);
-  padding: 16px;
-  text-align: center;
-  font-size: 22px;
-  font-weight: bold;
-}
-
-/* WALLET BAR */
-.wallet-bar {
-  margin: 15px;
-  padding: 14px;
-  background: rgba(0, 0, 0, 0.45);
-  border-radius: 16px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  animation: slideDown 0.6s ease;
-}
-
-@keyframes slideDown {
-  from { transform: translateY(-20px); opacity: 0; }
-  to { transform: translateY(0); opacity: 1; }
-}
-
-/* BUTTONS */
-button {
-  background: linear-gradient(135deg, #00ff9d, #00c56e);
-  color: #003d2b;
-  border: none;
-  padding: 12px 18px;
-  border-radius: 14px;
-  font-size: 16px;
-  font-weight: bold;
-  cursor: pointer;
-  transition: 0.25s;
-  position: relative;
-  overflow: hidden;
-}
-
-button:hover {
-  transform: scale(1.06);
-  box-shadow: 0 0 18px #00ff9d;
-}
-
-button:active {
-  transform: scale(0.96);
-}
-
-/* RIPPLE EFFECT */
-button::after {
-  content: "";
-  position: absolute;
-  width: 0;
-  height: 0;
-  background: rgba(255,255,255,0.6);
-  border-radius: 50%;
-  transform: translate(-50%, -50%);
-  opacity: 0;
-}
-
-button:active::after {
-  width: 200px;
-  height: 200px;
-  opacity: 0;
-  animation: ripple 0.6s ease;
-}
-
-@keyframes ripple {
-  from { opacity: 0.6; }
-  to { opacity: 0; }
-}
-
-/* CONTEST GRID */
-.contests {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-  gap: 15px;
-  padding: 15px;
-}
-
-.contest-card {
-  background: rgba(0, 0, 0, 0.5);
-  padding: 16px;
-  border-radius: 18px;
-  text-align: center;
-  animation: cardPop 0.6s ease;
-  transition: 0.3s;
-}
-
-@keyframes cardPop {
-  from { transform: scale(0.9); opacity: 0; }
-  to { transform: scale(1); opacity: 1; }
-}
-
-.contest-card:hover {
-  box-shadow: 0 0 25px #00ff9d;
-  transform: translateY(-6px);
-}
-
-.contest-card h3 {
-  margin-bottom: 6px;
-}
-
-.contest-card p {
-  font-size: 14px;
-  opacity: 0.9;
-  margin-bottom: 10px;
-}
-
-/* QUIZ BOX */
-#quizBox {
-  background: rgba(0, 0, 0, 0.65);
-  margin: 20px;
-  padding: 20px;
-  border-radius: 18px;
-  animation: quizSlide 0.5s ease;
-}
-
-@keyframes quizSlide {
-  from { transform: translateY(30px); opacity: 0; }
-  to { transform: translateY(0); opacity: 1; }
-}
-
-input {
-  width: 100%;
-  padding: 12px;
-  margin: 10px 0;
-  border-radius: 12px;
-  border: none;
-  font-size: 16px;
-}
-
-/* LOADING SPINNER */
-.loader {
-  border: 5px solid rgba(255,255,255,0.3);
-  border-top: 5px solid #00ff9d;
-  border-radius: 50%;
-  width: 40px;
-  height: 40px;
-  animation: spin 1s linear infinite;
-  margin: 20px auto;
-}
-
-@keyframes spin {
-  to { transform: rotate(360deg); }
-}
-
-/* FOOTER */
-.footer {
-  margin-top: 30px;
-  padding: 12px;
-  text-align: center;
-  font-size: 13px;
-  opacity: 0.85;
+button{width:100%;margin-top:8px}
+.contest{
+  background:#111;margin:15px;padding:15px;
+  border-radius:10px;text-align:center;
 }
