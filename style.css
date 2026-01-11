@@ -1,20 +1,43 @@
-body{margin:0;font-family:Arial;color:#fff}
-.login-bg{background:#000}
-.casino-bg{background:radial-gradient(circle,#111,#000)}
-.contest-bg{background:#0a0a0a}
+body{margin:0;font-family:Arial;text-align:center;color:#fff}
 
-.login-box{
-  width:300px;margin:120px auto;
-  background:#111;padding:20px;
-  border-radius:12px;
-  animation:glow 2s infinite alternate;
+.brand-name{
+font-size:32px;font-weight:bold;
+background:linear-gradient(90deg,#00ff99,#ffd700,#00ccff);
+-webkit-background-clip:text;
+-webkit-text-fill-color:transparent;
+animation:glow 2.5s infinite alternate;
 }
 @keyframes glow{
-  from{box-shadow:0 0 10px gold}
-  to{box-shadow:0 0 25px red}
+from{text-shadow:0 0 10px gold}
+to{text-shadow:0 0 25px #00ff99}
 }
-button{width:100%;margin-top:8px}
-.contest{
-  background:#111;margin:15px;padding:15px;
-  border-radius:10px;text-align:center;
+.brand-small{font-size:24px}
+.brand-center{text-align:center;margin-bottom:10px}
+
+.welcome-bg{
+background:linear-gradient(135deg,#00ff99,#0066ff);
+height:100vh;display:flex;align-items:center;justify-content:center;
 }
+
+.welcome-box{background:#000;padding:30px;border-radius:20px;box-shadow:0 0 30px gold}
+
+.login-bg,.casino-bg{background:radial-gradient(circle,#00ff99,#003366);min-height:100vh}
+
+.box,.card{
+background:#000;padding:20px;border-radius:15px;
+box-shadow:0 0 20px cyan;width:280px;margin:20px auto;
+}
+
+.dash-bg{
+background:linear-gradient(135deg,#00ff99,#0066ff,#003366);
+background-size:400% 400%;
+animation:bg 12s infinite;
+min-height:100vh;
+}
+@keyframes bg{0%{background-position:0%}50%{background-position:100%}100%{background-position:0%}}
+
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:15px;margin:20px}
+.grid div{background:#000;padding:15px;border-radius:15px;box-shadow:0 0 15px lime;cursor:pointer}
+
+.wallet{background:#000;padding:15px;border-radius:15px;box-shadow:0 0 25px gold;margin:15px}
+.money{font-size:26px;color:#00ff99}
