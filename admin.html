@@ -1,35 +1,15 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <title>Admin</title>
-  <link rel="stylesheet" href="style.css">
-</head>
-<body>
+<h2>Admin Panel</h2>
+<div id="list"></div>
 
-<div class="header">🔐 Admin Panel</div>
-
-<div style="padding:20px;text-align:center;" id="list"></div>
-
-<script>
-if(prompt("Admin Key")!=="ADMIN123"){ location.href="login.html"; }
-
-let ws = JSON.parse(localStorage.getItem("withdraws"));
-let html="<h3>Withdraw Requests</h3>";
-
-ws.forEach((r,i)=>{
-  html+=`<p>${r.id} ₹${r.amount} ${r.status}
-  ${r.status==="PENDING"?`<button onclick="ok(${i})">Approve</button>`:""}
-  </p>`;
-});
-list.innerHTML=html;
+<script src="js/admin.js"></script>
+let d=JSON.parse(localStorage.getItem("withdraw")||"[]");
+list.innerHTML=d.map((x,i)=>`
+${x.user} ₹${x.amt} ${x.status}
+<button onclick="ok(${i})">Approve</button><hr>
+`).join("");
 
 function ok(i){
-  ws[i].status="APPROVED";
-  localStorage.setItem("withdraws", JSON.stringify(ws));
-  alert("Approved");
-  location.reload();
+ d[i].status="Approved";
+ localStorage.setItem("withdraw",JSON.stringify(d));
+ location.reload();
 }
-</script>
-
-</body>
-</html>
