@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Quiz</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body class="casino-bg">
+
+<div class="brand-name brand-small brand-center">🎰 Bet Luck Earn</div>
+
+<p>Entry ₹<span id="amt"></span></p>
+
+<div class="card">
+<p>5 × 4 = ?</p>
+<button onclick="ans(20)">20</button>
+<button onclick="ans(15)">15</button>
+</div>
+
+<script src="sound.js"></script>
+<script>
+let a=localStorage.getItem("contestAmount");
+amt.innerText=a;
+
+function ans(v){
+ play("click");
+ if(v==20){
+  let prize=a*10*0.7;
+  let u=localStorage.getItem("loggedUser");
+  let b=Number(localStorage.getItem("wallet_"+u));
+  localStorage.setItem("wallet_"+u,b+prize);
+  play("win");
+  alert("You won ₹"+prize);
+ }
+}
+</script>
+</body>
+</html>
