@@ -2,44 +2,21 @@
 <html>
 <head>
   <title>Dashboard</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="css/style.css">
 </head>
-<body>
+<body class="casino-bg" onload="bgMusic()">
 
-<div class="header">🎰 Bet Luck & Earn</div>
+<h2>Welcome <span id="uname"></span></h2>
 
-<div style="padding:20px;text-align:center;">
-  <p>🆔 ID: <b id="uid"></b></p>
-  <p>💰 Wallet: ₹<b id="wallet"></b></p>
-
-  <button onclick="playClick();location.href='contest.html'">🎯 Play</button>
-  <br><br>
-  <button onclick="playClick();location.href='withdraw.html'">🏦 Withdraw</button>
-  <br><br>
-  <button onclick="toggleMusic()">🎵 Music On / Off</button>
-
-  <hr style="margin:20px 0">
-
-  <h3>🏆 Top Winners</h3>
-  <div id="top"></div>
+<div class="menu">
+  <button onclick="deposit()">Deposit</button>
+  <button onclick="withdraw()">Withdraw</button>
+  <button onclick="location.href='contest.html'">Quiz Contest</button>
 </div>
 
-<script src="sound.js"></script>
-<script>
-const user = JSON.parse(localStorage.getItem("user"));
-if(!user) location.href="register.html";
+<div id="box"></div>
 
-uid.innerText = user.id;
-wallet.innerText = user.wallet;
-
-const scores = JSON.parse(localStorage.getItem("scores")) || [];
-scores.sort((a,b)=>b.score-a.score);
-let html="";
-scores.slice(0,3).forEach((s,i)=>{
-  html += `<p>🥇 Rank ${i+1}: ${s.name} (${s.score})</p>`;
-});
-top.innerHTML = html || "<p>No winners yet</p>";
-</script>
-
+<script src="js/dashboard.js"></script>
+<script src="js/sound.js"></script>
 </body>
 </html>
