@@ -1,115 +1,52 @@
-/* ===== RESET ===== */
-html,body{
-  margin:0;
-  padding:0;
-  width:100%;
-  height:100%;
-  font-family:Arial, sans-serif;
-  color:#fff;
-}
+html,body{margin:0;height:100%;font-family:Arial;color:#fff}
 
-/* ===== FULL SCREEN CENTER FIX ===== */
+/* FULL SCREEN ANIMATED BG */
 .full-bg{
-  width:100vw;
-  height:100vh;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-
-  background:radial-gradient(circle at center,
-    #00ff99 0%,
-    #00ccff 40%,
-    #003366 100%);
-
+  min-height:100vh;display:flex;align-items:center;justify-content:center;
+  background:radial-gradient(circle,#00ff99,#00ccff,#003366);
   background-size:300% 300%;
-  animation:bgMove 10s ease-in-out infinite;
-
-  position:relative;
-  overflow:hidden;
+  animation:bgMove 10s ease infinite;overflow:hidden;position:relative;
 }
+@keyframes bgMove{0%{background-position:0%}50%{background-position:100%}100%{background-position:0%}}
 
-/* ===== BACKGROUND ANIMATION ===== */
-@keyframes bgMove{
-  0%{background-position:0% 50%}
-  50%{background-position:100% 50%}
-  100%{background-position:0% 50%}
+.full-bg::before,.full-bg::after{
+  content:"";position:absolute;width:320px;height:320px;border-radius:50%;
+  filter:blur(120px);opacity:.45;animation:float 6s infinite alternate;
 }
+.full-bg::before{background:#00ff99;top:10%;left:10%}
+.full-bg::after{background:#00ccff;bottom:10%;right:10%;animation-delay:3s}
+@keyframes float{to{transform:translateY(-60px)}}
 
-/* ===== GLOW ORBS (CASINO FEEL) ===== */
-.full-bg::before,
-.full-bg::after{
-  content:"";
-  position:absolute;
-  width:320px;
-  height:320px;
-  border-radius:50%;
-  filter:blur(120px);
-  opacity:0.5;
-  animation:float 6s infinite alternate;
+/* CENTER PANEL */
+.panel{
+  background:rgba(0,0,0,.8);width:90%;max-width:380px;padding:30px 24px;
+  border-radius:22px;text-align:center;z-index:2;
+  box-shadow:0 0 40px #00ff99;animation:pulse 2.5s infinite;
 }
+@keyframes pulse{50%{box-shadow:0 0 45px #00ccff}}
 
-.full-bg::before{
-  background:#00ff99;
-  top:10%;
-  left:15%;
-}
-
-.full-bg::after{
-  background:#00ccff;
-  bottom:15%;
-  right:15%;
-  animation-delay:3s;
-}
-
-@keyframes float{
-  from{transform:translateY(0)}
-  to{transform:translateY(-60px)}
-}
-
-/* ===== CENTER PANEL ===== */
-.center-panel{
-  background:rgba(0,0,0,0.8);
-  width:90%;
-  max-width:380px;
-  padding:35px 25px;
-  border-radius:22px;
-  text-align:center;
-  z-index:2;
-
-  box-shadow:0 0 40px #00ff99;
-  animation:pulse 2.5s infinite;
-}
-
-@keyframes pulse{
-  0%{box-shadow:0 0 20px #00ff99}
-  50%{box-shadow:0 0 45px #00ccff}
-  100%{box-shadow:0 0 20px #00ff99}
-}
-
-/* ===== BRAND ===== */
-.brand-name{
-  font-size:36px;
-  font-weight:bold;
+.brand{
+  font-size:34px;font-weight:bold;margin-bottom:10px;
   background:linear-gradient(90deg,#00ff99,#ffd700,#00ccff);
-  -webkit-background-clip:text;
-  -webkit-text-fill-color:transparent;
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
   text-shadow:0 0 20px gold;
-  margin-bottom:10px;
 }
 
-/* ===== INPUT & BUTTON ===== */
-.center-panel input,
-.center-panel button{
-  width:100%;
-  padding:14px;
-  margin-top:14px;
-  border:none;
-  border-radius:12px;
-  font-size:15px;
+input,button{
+  width:100%;padding:14px;margin-top:12px;border:0;border-radius:12px;font-size:15px
+}
+button{
+  background:linear-gradient(90deg,#00ff99,#00ccff);font-weight:bold;color:#000;cursor:pointer
 }
 
-.center-panel button{
-  background:linear-gradient(90deg,#00ff99,#00ccff);
-  font-weight:bold;
-  color:#000;
-}
+/* DASH */
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:14px}
+.grid div{background:#000;padding:14px;border-radius:14px;box-shadow:0 0 15px lime;cursor:pointer}
+
+.wallet{background:#000;border-radius:14px;padding:14px;box-shadow:0 0 25px gold;margin:10px}
+.money{font-size:26px;color:#00ff99}
+
+.qr-box{width:220px;margin:12px auto;padding:10px;background:#000;border-radius:14px;box-shadow:0 0 25px #00ff99}
+.qr-box img{width:100%;border-radius:10px}
+
+.card{background:#000;padding:14px;border-radius:14px;box-shadow:0 0 18px cyan;margin:10px auto;width:280px}
