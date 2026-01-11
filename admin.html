@@ -1,15 +1,21 @@
+<body>
 <h2>Admin Panel</h2>
-<div id="list"></div>
+<div id="l"></div>
 
-<script src="js/admin.js"></script>
-let d=JSON.parse(localStorage.getItem("withdraw")||"[]");
-list.innerHTML=d.map((x,i)=>`
+<script>
+let r=JSON.parse(localStorage.getItem("req")||"[]");
+l.innerHTML=r.map((x,i)=>`
 ${x.user} ₹${x.amt} ${x.status}
 <button onclick="ok(${i})">Approve</button><hr>
 `).join("");
 
 function ok(i){
- d[i].status="Approved";
- localStorage.setItem("withdraw",JSON.stringify(d));
+ let x=r[i];
+ let b=Number(localStorage.getItem("wallet_"+x.user));
+ localStorage.setItem("wallet_"+x.user,b-Number(x.amt));
+ r[i].status="Approved";
+ localStorage.setItem("req",JSON.stringify(r));
  location.reload();
 }
+</script>
+</body>
