@@ -1,62 +1,32 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Contests</title>
-  <link rel="stylesheet" href="style.css">
+  <title>Quiz Contest</title>
+  <link rel="stylesheet" href="css/style.css">
 </head>
-<body>
+<body class="contest-bg">
 
-<div class="header">🎯 Contests</div>
+<h2>🏆 Quiz Contests</h2>
 
-<div class="wallet-bar">
-  <span>💰 Wallet: ₹<span id="wallet"></span></span>
+<div class="contest">
+  <img src="assets/icons/math.png">
+  <h4>Math Contest ₹5</h4>
+  <button onclick="join(5)">Join</button>
 </div>
 
-<div class="contests">
-  <div class="contest-card"><h3>₹5</h3><button onclick="playClick();start(5)">Play</button></div>
-  <div class="contest-card"><h3>₹10</h3><button onclick="playClick();start(10)">Play</button></div>
-  <div class="contest-card"><h3>₹50</h3><button onclick="playClick();start(50)">Play</button></div>
+<div class="contest">
+  <img src="assets/icons/gk.png">
+  <h4>GK Contest ₹100</h4>
+  <button onclick="join(100)">Join</button>
 </div>
 
-<div id="quizBox" style="display:none;">
-  <h3 id="q"></h3>
-  <input id="ans" placeholder="Answer">
-  <button onclick="submit()">Submit</button>
+<div class="contest">
+  <img src="assets/icons/science.png">
+  <h4>Science Contest ₹1000</h4>
+  <button onclick="join(1000)">Join</button>
 </div>
 
-<script src="sound.js"></script>
-<script>
-const user = JSON.parse(localStorage.getItem("user"));
-wallet.innerText = user.wallet;
-
-const qs = [
-  {q:"5+5=?",a:"10"},
-  {q:"10-3=?",a:"7"},
-  {q:"Capital of India?",a:"delhi"},
-  {q:"Sun is a?",a:"star"}
-];
-
-let right="", fee=0;
-
-function start(f){
-  if(user.wallet < f){ playLose(); alert("Low balance"); return; }
-  fee=f; user.wallet-=f; wallet.innerText=user.wallet;
-  const x = qs[Math.floor(Math.random()*qs.length)];
-  right=x.a; q.innerText=x.q; quizBox.style.display="block";
-}
-
-function submit(){
-  if(ans.value.toLowerCase().trim()==right){
-    playWin(); alert("Won!");
-    user.wallet+=20;
-    const scores = JSON.parse(localStorage.getItem("scores"));
-    scores.push({name:user.id, score:20});
-    localStorage.setItem("scores", JSON.stringify(scores));
-  } else { playLose(); alert("Wrong"); }
-  localStorage.setItem("user", JSON.stringify(user));
-  quizBox.style.display="none"; ans.value="";
-}
-</script>
-
+<script src="js/contest.js"></script>
+<script src="js/sound.js"></script>
 </body>
 </html>
