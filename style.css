@@ -1,4 +1,4 @@
-/* ===== COMMON RESET ===== */
+/* ===== RESET ===== */
 body{
   margin:0;
   font-family:Arial, sans-serif;
@@ -24,79 +24,84 @@ body{
   100%{background-position:0% 50%}
 }
 
-/* glowing casino lights */
+/* floating casino lights */
 .full-bg::before,
 .full-bg::after{
   content:"";
   position:absolute;
-  width:300px;
-  height:300px;
-  background:#00ff99;
+  width:320px;
+  height:320px;
   border-radius:50%;
-  filter:blur(120px);
-  opacity:0.4;
-  animation:floatGlow 6s infinite alternate;
+  filter:blur(130px);
+  opacity:0.45;
+  animation:floatGlow 7s infinite alternate;
+}
+.full-bg::before{
+  background:#00ff99;
+  top:15%;
+  left:10%;
 }
 .full-bg::after{
   background:#00ccff;
-  animation-delay:3s;
   right:10%;
-  bottom:10%;
+  bottom:15%;
+  animation-delay:3s;
 }
 
 @keyframes floatGlow{
   from{transform:translateY(0)}
-  to{transform:translateY(-60px)}
+  to{transform:translateY(-70px)}
 }
 
 /* ===== BRAND ===== */
 .brand-name{
-  font-size:34px;
+  font-size:36px;
   font-weight:bold;
   background:linear-gradient(90deg,#00ff99,#ffd700,#00ccff);
   -webkit-background-clip:text;
   -webkit-text-fill-color:transparent;
-  text-shadow:0 0 20px rgba(255,215,0,.8);
+  text-shadow:0 0 22px rgba(255,215,0,0.8);
   animation:brandGlow 2.5s infinite alternate;
 }
 
 @keyframes brandGlow{
-  from{filter:drop-shadow(0 0 8px #00ff99)}
-  to{filter:drop-shadow(0 0 18px gold)}
+  from{filter:drop-shadow(0 0 10px #00ff99)}
+  to{filter:drop-shadow(0 0 22px gold)}
 }
 
-/* ===== BIG CENTER PANEL (WELCOME / LOGIN) ===== */
+/* ===== CENTER BIG PANEL ===== */
 .center-panel{
-  background:rgba(0,0,0,0.75);
+  background:rgba(0,0,0,0.78);
   width:90%;
-  max-width:360px;
-  padding:30px 25px;
-  border-radius:20px;
+  max-width:380px;
+  padding:34px 26px;
+  border-radius:22px;
   text-align:center;
-  box-shadow:0 0 40px rgba(0,255,153,0.8);
-  animation:panelPulse 2.5s infinite;
+  box-shadow:0 0 45px rgba(0,255,153,0.85);
+  animation:panelPulse 2.8s infinite;
   z-index:5;
 }
 
 @keyframes panelPulse{
-  0%{box-shadow:0 0 20px #00ff99}
-  50%{box-shadow:0 0 40px #00ccff}
-  100%{box-shadow:0 0 20px #00ff99}
+  0%{box-shadow:0 0 22px #00ff99}
+  50%{box-shadow:0 0 45px #00ccff}
+  100%{box-shadow:0 0 22px #00ff99}
 }
 
 .center-panel p{
   opacity:.9;
-  margin-bottom:20px;
+  margin-bottom:22px;
+  font-size:14px;
 }
 
 /* inputs & buttons */
 .center-panel input,
 .center-panel button{
   width:100%;
-  padding:12px;
-  margin-top:12px;
+  padding:13px;
+  margin-top:14px;
   border:none;
-  border-radius:10px;
+  border-radius:12px;
   font-size:15px;
 }
 
@@ -108,5 +113,5 @@ body{
 }
 
 .center-panel button:hover{
-  filter:brightness(1.1);
+  filter:brightness(1.15);
 }
