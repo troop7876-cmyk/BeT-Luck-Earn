@@ -1,30 +1,20 @@
-<!DOCTYPE html>
-<html>
-<head>
-<title>Contests</title>
-<link rel="stylesheet" href="style.css">
-</head>
-<body class="casino-bg">
-
-<div class="brand-name brand-small brand-center">🎰 Bet Luck Earn</div>
-
-<div class="card" onclick="openC(5)">Contest ₹5</div>
-<div class="card" onclick="openC(20)">Contest ₹20</div>
-<div class="card" onclick="openC(50)">Contest ₹50</div>
-<div class="card" onclick="openC(100)">Contest ₹100</div>
-<div class="card" onclick="openC(1000)">Contest ₹1000</div>
-
+<!doctype html><html><head>
+<title>Contest</title><link rel="stylesheet" href="style.css"></head>
+<body class="full-bg">
+<div class="panel">
+  <div class="brand">🎰 Bet Luck Earn</div>
+  <div class="card" onclick="go(5)">₹5 Contest</div>
+  <div class="card" onclick="go(20)">₹20 Contest</div>
+  <div class="card" onclick="go(50)">₹50 Contest</div>
+  <div class="card" onclick="go(100)">₹100 Contest</div>
+  <div class="card" onclick="go(1000)">₹1000 Contest</div>
+</div>
 <script src="sound.js"></script>
 <script>
-function openC(a){
- play("click");
- if(localStorage.getItem("hasDeposited")!=="yes"){
-   alert("Please deposit first");
-   return;
- }
- localStorage.setItem("contestAmount",a);
- location="quiz.html";
+function go(a){
+  play("click");
+  if(localStorage.getItem("hasDeposited")!=="yes"){alert("Deposit first");return;}
+  localStorage.setItem("contestAmount",a); location="quiz.html";
 }
 </script>
-</body>
-</html>
+</body></html>
