@@ -1,16 +1,18 @@
-<body class="casino-bg">
-<div class="brand-name brand-small brand-center">🎰 Bet Luck Earn</div>
-
-<input id="amt" placeholder="Amount">
-<button onclick="send()">Request Withdraw</button>
-
+<!doctype html><html><head>
+<title>Withdraw</title><link rel="stylesheet" href="style.css"></head>
+<body class="full-bg">
+<div class="panel">
+  <div class="brand">🎰 Bet Luck Earn</div>
+  <input id="amt" placeholder="Amount">
+  <button onclick="send()">Request Withdraw</button>
+</div>
 <script>
 function send(){
- let u=localStorage.getItem("loggedUser");
- let r=JSON.parse(localStorage.getItem("req")||"[]");
- r.push({user:u,amt:amt.value,status:"Pending"});
- localStorage.setItem("req",JSON.stringify(r));
- alert("Withdraw request sent");
+  const u=localStorage.getItem("loggedUser");
+  const r=JSON.parse(localStorage.getItem("req")||"[]");
+  r.push({u,amt:amt.value,s:"Pending"});
+  localStorage.setItem("req",JSON.stringify(r));
+  alert("Requested");
 }
 </script>
-</body>
+</body></html>
