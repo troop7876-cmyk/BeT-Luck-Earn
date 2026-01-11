@@ -1,52 +1,24 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Login - Bet Luck & Earn</title>
-  <link rel="stylesheet" href="style.css">
-  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth.js"></script>
-  <script src="firebase.js"></script>
+<title>Login</title>
+<link rel="stylesheet" href="style.css">
 </head>
-<body>
+<body class="login-bg">
 
-<div class="header">🔐 Login with OTP</div>
+<div class="box">
+  <div class="brand-name brand-small brand-center">🎰 Bet Luck Earn</div>
 
-<div style="padding:25px;text-align:center;">
-  <input id="phone" placeholder="+91XXXXXXXXXX">
-  <div id="recaptcha" style="margin:15px 0;"></div>
-  <button onclick="sendOTP()">Send OTP</button>
+  <input id="username" placeholder="Username">
+  <input id="password" type="password" placeholder="Password">
 
-  <br><br>
+  <button onclick="signup()">Sign Up</button>
+  <button onclick="login()">Login</button>
 
-  <input id="otp" placeholder="Enter OTP">
-  <button onclick="verifyOTP()">Verify & Login</button>
+  <p id="msg"></p>
 </div>
 
-<script>
-window.recaptchaVerifier = new firebase.auth.RecaptchaVerifier(
-  'recaptcha',
-  { size: 'normal' }
-);
-
-let confirmationResult;
-
-function sendOTP(){
-  const phone = document.getElementById("phone").value;
-  firebase.auth().signInWithPhoneNumber(phone, window.recaptchaVerifier)
-  .then(res=>{
-    confirmationResult = res;
-    alert("OTP Sent");
-  })
-  .catch(err=>alert(err.message));
-}
-
-function verifyOTP(){
-  const otp = document.getElementById("otp").value;
-  confirmationResult.confirm(otp)
-  .then(()=>window.location.href="dashboard.html")
-  .catch(()=>alert("Wrong OTP"));
-}
-</script>
-
+<script src="sound.js"></script>
+<script src="script.js"></script>
 </body>
 </html>
